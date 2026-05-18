@@ -200,6 +200,14 @@ Reason: Invalid order parameters
 Implemented enhanced CLI output formatting for improved user experience and readability.
 
 ---
+# Git Ignore
+
+The `.gitignore` file is used to prevent sensitive and unnecessary files from being uploaded to GitHub.
+
+Ignored files/folders:
+- `venv/` → virtual environment
+- `.env` → API keys and secrets
+- `__pycache__/` → Python cache files
 
 # Author
 
