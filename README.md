@@ -1,8 +1,8 @@
 # Trading Bot
 
-A simple Python CLI trading bot built for Binance Futures Testnet (USDT-M).
+This is a simple Python CLI trading bot built for Binance Futures Testnet (USDT-M).
 
-This project allows users to place MARKET and LIMIT orders using command-line arguments. It includes input validation, logging, structured project organization, and exception handling.
+The project allows users to place MARKET and LIMIT orders directly from the terminal using command-line arguments. The application includes input validation, logging, exception handling, and enhanced CLI output formatting for a better user experience.
 
 ---
 
@@ -10,12 +10,13 @@ This project allows users to place MARKET and LIMIT orders using command-line ar
 
 - Place MARKET orders
 - Place LIMIT orders
-- BUY and SELL support
+- Supports both BUY and SELL orders
 - Binance Futures Testnet integration
 - Command Line Interface (CLI)
+- Enhanced CLI output formatting
 - Input validation
+- Logging of API requests and responses
 - Error handling
-- Logging of API requests, responses, and errors
 
 ---
 
@@ -60,19 +61,19 @@ Clone the repository:
 git clone https://github.com/charchitpanchal/Trading-bot-.git
 ```
 
-Go into the project folder:
+Move into the project folder:
 
 ```bash
 cd Trading-bot-
 ```
 
-Create virtual environment:
+Create a virtual environment:
 
 ```bash
 python -m venv venv
 ```
 
-Activate virtual environment:
+Activate the virtual environment:
 
 ## Windows
 
@@ -80,7 +81,7 @@ Activate virtual environment:
 .\venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -99,19 +100,9 @@ BINANCE_SECRET_KEY=your_secret_key
 
 ---
 
-# Binance Futures Testnet
+# Running the Project
 
-Testnet URL:
-
-```text
-https://testnet.binancefuture.com
-```
-
-Generate API Keys from Binance Futures Testnet API Management.
-
----
-
-# Run MARKET Order
+## MARKET Order
 
 ```bash
 python -m bot.cli --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
@@ -120,15 +111,21 @@ python -m bot.cli --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
 Example Output:
 
 ```text
+==============================
 ORDER SUCCESS
-Order ID: 123456
-Status: NEW
-Executed Quantity: 0.0000
+==============================
+Symbol            : BTCUSDT
+Side              : BUY
+Order Type        : MARKET
+Order ID          : 123456
+Status            : NEW
+Executed Quantity : 0.0000
+==============================
 ```
 
 ---
 
-# Run LIMIT Order
+## LIMIT Order
 
 ```bash
 python -m bot.cli --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.001 --price 75000
@@ -138,16 +135,17 @@ python -m bot.cli --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.001 --p
 
 # Logging
 
-Logs are stored inside:
+All API requests, responses, and errors are stored inside:
 
 ```text
 logs/trading_bot.log
 ```
 
-The log file includes:
-- API request logs
-- API response logs
-- Error logs
+The log file contains:
+- order requests
+- API responses
+- validation errors
+- exception logs
 
 ---
 
@@ -156,26 +154,36 @@ The log file includes:
 The application validates:
 - BUY / SELL side
 - MARKET / LIMIT order type
-- Positive quantity
-- Price requirement for LIMIT orders
+- quantity greater than 0
+- price requirement for LIMIT orders
 
 ---
 
 # Error Handling
 
 The project handles:
-- Invalid user input
-- API errors
-- Network-related exceptions
+- invalid user input
+- Binance API errors
+- network-related exceptions
+
+Example Error Output:
+
+```text
+==============================
+ORDER FAILED
+==============================
+Reason: Invalid order parameters
+==============================
+```
 
 ---
 
 # Assumptions
 
-- Binance Futures Testnet is used instead of real trading environment
-- Python 3.x is installed
-- User has valid Binance Testnet API keys
-- Internet connection is available
+- Binance Futures Testnet is used instead of real trading
+- Python 3.x is installed on the system
+- Valid Binance Testnet API keys are available
+- Internet connection is active
 
 ---
 
@@ -184,6 +192,12 @@ The project handles:
 - Python 3
 - python-binance
 - python-dotenv
+
+---
+
+# Bonus Feature
+
+Implemented enhanced CLI output formatting for improved user experience and readability.
 
 ---
 

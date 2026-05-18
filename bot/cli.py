@@ -34,11 +34,23 @@ try:
         price=args.price
     )
 
-    print("\nORDER SUCCESS")
-    print(f"Order ID: {response['orderId']}")
-    print(f"Status: {response['status']}")
-    print(f"Executed Quantity: {response['executedQty']}")
+    print("\n==============================")
+    print("ORDER SUCCESS")
+    print("==============================")
+    print(f"Symbol            : {args.symbol}")
+    print(f"Side              : {args.side}")
+    print(f"Order Type        : {args.type}")
+    print(f"Order ID          : {response['orderId']}")
+    print(f"Status            : {response['status']}")
+    print(f"Executed Quantity : {response['executedQty']}")
+    print("==============================")
 
 except Exception as e:
 
-    print(f"\nERROR: {str(e)}")
+        
+
+    print("\n==============================")
+    print("ORDER FAILED")
+    print("==============================")
+    print(f"Reason: {str(e)}")
+    print("==============================")
