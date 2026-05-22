@@ -13,6 +13,7 @@ The project allows users to place MARKET and LIMIT orders directly from the term
 - Supports both BUY and SELL orders
 - Binance Futures Testnet integration
 - Command Line Interface (CLI)
+- Web UI for placing orders
 - Enhanced CLI output formatting
 - Input validation
 - Logging of API requests and responses
@@ -31,7 +32,13 @@ trading_bot/
 │   ├── orders.py
 │   ├── validators.py
 │   ├── logging_config.py
-│   └── cli.py
+│   ├── cli.py
+│   └── api.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
 │
 ├── logs/
 │   └── trading_bot.log
@@ -100,9 +107,39 @@ BINANCE_SECRET_KEY=your_secret_key
 
 ---
 
+# Open in Visual Studio Code
+
+1. Install [Visual Studio Code](https://code.visualstudio.com/) and the **Python** extension.
+2. Open the project:
+   - **File → Open Folder** → select the `trading_bot` folder, or
+   - **File → Open Workspace from File** → open `trading_bot.code-workspace`
+3. When prompted, select the interpreter: `venv\Scripts\python.exe`
+4. Run the web UI:
+   - **Run and Debug** (Ctrl+Shift+D) → choose **Web UI: FastAPI** → press F5, or
+   - **Terminal → Run Task** → **Run Web UI**
+5. Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
+
+Launch configs for sample CLI orders are also in `.vscode/launch.json`.
+
+---
+
 # Running the Project
 
-## MARKET Order
+## Web UI (recommended)
+
+Start the API server (serves the frontend at the same URL):
+
+```bash
+uvicorn bot.api:app --reload
+```
+
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser. Use the form to place MARKET or LIMIT orders. API keys stay on the server in `.env` and are never sent to the browser.
+
+---
+
+## CLI
+
+### MARKET Order
 
 ```bash
 python -m bot.cli --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
@@ -192,6 +229,8 @@ Reason: Invalid order parameters
 - Python 3
 - python-binance
 - python-dotenv
+- FastAPI
+- Uvicorn
 
 ---
 

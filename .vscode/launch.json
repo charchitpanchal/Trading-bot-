@@ -1,0 +1,62 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Web UI: FastAPI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "bot.api:app",
+        "--reload",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "CLI: MARKET order",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bot.cli",
+      "args": [
+        "--symbol",
+        "BTCUSDT",
+        "--side",
+        "BUY",
+        "--type",
+        "MARKET",
+        "--quantity",
+        "0.001"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "CLI: LIMIT order",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bot.cli",
+      "args": [
+        "--symbol",
+        "BTCUSDT",
+        "--side",
+        "SELL",
+        "--type",
+        "LIMIT",
+        "--quantity",
+        "0.001",
+        "--price",
+        "75000"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}
