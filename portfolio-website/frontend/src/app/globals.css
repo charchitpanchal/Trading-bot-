@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: rgba(255, 255, 255, 0.7);
+  --border: rgba(15, 23, 42, 0.1);
+  --muted: #64748b;
+  --accent: #6366f1;
+  --cursor-size: 12px;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #f1f5f9;
+  --card: rgba(15, 23, 42, 0.6);
+  --border: rgba(148, 163, 184, 0.15);
+  --muted: #94a3b8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: white;
+}
+
+.glass {
+  @apply backdrop-blur-xl border border-white/10 bg-white/5 dark:bg-slate-900/40;
+}
+
+.glass-card {
+  @apply glass rounded-2xl shadow-glass transition-all duration-300;
+}
+
+.glass-card:hover {
+  @apply border-accent/40 shadow-glow -translate-y-1;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold tracking-tight gradient-text;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:scale-[1.02] hover:shadow-indigo-500/40 active:scale-[0.98];
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold backdrop-blur transition hover:bg-white/20 active:scale-[0.98];
+}
+
+.progress-bar {
+  @apply h-2 w-full overflow-hidden rounded-full bg-slate-200/50 dark:bg-slate-800;
+}
+
+.progress-fill {
+  @apply h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000 ease-out;
+}
+
+@media (pointer: fine) {
+  body.custom-cursor * {
+    cursor: none;
+  }
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0c4a6e);
+  background-size: 400% 400%;
+  animation: gradient-x 12s ease infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor {
+  animation: blink 1s step-end infinite;
+}
