@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trading Bot — Binance Futures Testnet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <header class="header">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">◈</span>
+          <div>
+            <h1>Trading Bot</h1>
+            <p class="subtitle">Binance Futures Testnet (USDT-M)</p>
+          </div>
+        </div>
+        <div class="status-pill" id="healthStatus" title="API connection">
+          <span class="status-dot"></span>
+          <span class="status-text">Checking…</span>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="card order-card">
+          <h2>Place order</h2>
+          <form id="orderForm" novalidate>
+            <div class="field">
+              <label for="symbol">Symbol</label>
+              <input
+                type="text"
+                id="symbol"
+                name="symbol"
+                placeholder="BTCUSDT"
+                required
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="side">Side</label>
+                <select id="side" name="side" required>
+                  <option value="BUY">BUY</option>
+                  <option value="SELL">SELL</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="orderType">Order type</label>
+                <select id="orderType" name="orderType" required>
+                  <option value="MARKET">MARKET</option>
+                  <option value="LIMIT">LIMIT</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="quantity">Quantity</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  step="any"
+                  min="0"
+                  placeholder="0.001"
+                  required
+                />
+              </div>
+              <div class="field" id="priceField">
+                <label for="price">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  step="any"
+                  min="0"
+                  placeholder="75000"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span class="btn-label">Place order</span>
+              <span class="btn-spinner" hidden aria-hidden="true"></span>
+            </button>
+          </form>
+        </section>
+
+        <section class="card result-card" id="resultCard" hidden>
+          <div class="result-header">
+            <h2 id="resultTitle">Result</h2>
+            <button type="button" class="btn-dismiss" id="dismissResult" aria-label="Dismiss">
+              ×
+            </button>
+          </div>
+          <dl class="result-details" id="resultDetails"></dl>
+        </section>
+
+        <section class="card info-card">
+          <h2>Quick reference</h2>
+          <ul class="info-list">
+            <li><strong>MARKET</strong> — executes at current market price; price field is ignored.</li>
+            <li><strong>LIMIT</strong> — requires a limit price; uses GTC time in force.</li>
+            <li>API keys are read from <code>.env</code> on the server — never exposed to the browser.</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Testnet only — no real funds. Logs: <code>logs/trading_bot.log</code></p>
+      </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
